@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # CREATE
   get("/insert_photo_record", { :controller => "photos", :action => "create" })
 
+  post("/insert_like", { :controller => "photos", :action => "likes" })
+
   # READ
   get("/photos", { :controller => "photos", :action => "index"})
 
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
   # Comment routes
 
   # CREATE
-  get("/insert_comment_record", { :controller => "comments", :action => "create" })
+  post("/insert_comment_record", { :controller => "comments", :action => "create" })
 
   # DELETE
 

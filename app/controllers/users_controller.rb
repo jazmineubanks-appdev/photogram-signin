@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 
 def authenticate
-  # get the username from the params
+# get the username from the params
 # get the password from params
   un = params.fetch("input_username")
   pw = params.fetch("input_password")
 
-# look up the record from the db matchign username
+# look up the record from the db matching username
 user = User.where({ :username => un }).at(0)
 # if there is no record, redirect to sign in form
 if user == nil

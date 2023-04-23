@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    user_id = params.fetch("input_owner_id")
+    user_id = session.fetch(:user_id)
     image = params.fetch("input_image")
     caption = params.fetch("input_caption")
     photo = Photo.new
@@ -31,6 +31,7 @@ class PhotosController < ApplicationController
   end
 
   def update
+
     id = params.fetch("the_photo_id")
     photo = Photo.where({ :id => id }).at(0)
     photo.caption = params.fetch("input_caption")
@@ -38,5 +39,13 @@ class PhotosController < ApplicationController
     photo.save
 
     redirect_to("/photos/#{photo.id}")
+
+  end
+  def likes
+    id = params.fetch ("photo_id")
+    like = Like.where({ :photo_id => id}).at(0)
+    like.save
+
+  redirect_to("/photos/#{like.photo_id}")
   end
 end
